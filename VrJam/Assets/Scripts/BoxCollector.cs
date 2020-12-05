@@ -4,15 +4,46 @@ using UnityEngine;
 
 public class BoxCollector : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Dictionary<ProductType, int> myItems;
+
+    private void Start()
     {
-        
+        ResetDict();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log("hit");
+
+        Product prod = other.GetComponent<Product>();
+
+        if (prod)
+        {
+            StartCoroutine(prod.Return(0.5F));
+            prod.gameObject.SetActive(false);
+            AddToDict(prod);
+        }
     }
+
+    void AddToDict(Product item)
+    {
+        if (myItems.ContainsKey(item.myType))
+        {
+            myItems[item.myType]++;
+        }
+        else
+        {
+            myItems.Add(item.myType, 1);
+        }
+    }
+
+    public Dictionary<ProductType, int> GetDict()
+    {
+        return myItems;
+    }
+
+    public void ResetDict()
+    {
+        myItems = new Dictionary<ProductType, int>();
+    } 
 }
