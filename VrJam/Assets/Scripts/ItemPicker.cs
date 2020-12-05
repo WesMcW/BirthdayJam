@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ItemPicker : MonoBehaviour
 {
     ItemType item;
     public ItemType[] allItems = new ItemType[3];
     public int[] amountOfItem = new int[3];
+
+    public TextMeshProUGUI
+
 
     // Start is called before the first frame update
     void Start()
