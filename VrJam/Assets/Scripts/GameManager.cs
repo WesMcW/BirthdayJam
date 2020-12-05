@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     [Header("Time Variables")]
     public int currentLevel;
     public float timePassed;
@@ -11,15 +13,18 @@ public class GameManager : MonoBehaviour
 
     [Header("GameObjects")]
     public BoxCollector box;
+    public ItemPicker orderScript;
+    public TMPro.TextMeshPro tempText;
 
     [Header("Game Variables")]
     public bool inGame;
     public int strikes = 0;
     public int roundStrikes = 0;
 
-    void Start()
+    void Awake()
     {
-        
+        if (instance) Destroy(gameObject);
+        else instance = this;
     }
 
     void Update()
@@ -38,6 +43,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void FinishOrder()
+    {
+        box.boxEnabled = false;
+        //start box animation
+        ResultsOfOrder();
+        StartCoroutine(StartNewOrder());
+    }
+
     void ResultsOfOrder()
     {
         Dictionary<ItemType, int> itemCounts = new Dictionary<ItemType, int>();
@@ -48,7 +61,44 @@ public class GameManager : MonoBehaviour
         }
 
         // compare dict to order and see if strike is given
+        bool success = true;
+        for(int i = 0; i < 3; i++)
+        {
+            if (itemCounts.ContainsKey(orderScript.allItems[i]))
+            {
+                if (itemCounts[orderScript.allItems[i]] >= orderScript.amountOfItem[i])
+                {
+                    itemCounts[orderScript.allItems[i]] -= orderScript.amountOfItem[i];
+                }
+                else
+                {
+                    success = false;
+                    break;
+                }
+            }
+            else
+            {
+                success = false;
+                break;
+            }
+        }
 
+        foreach(var i in itemCounts)
+        {
+            if (i.Value != 0) success = false;
+        }
 
+        if (!success)
+        {
+            roundStrikes++;
+            tempText.text = "Errors: " + roundStrikes;
+        }
+    }
+
+    IEnumerator StartNewOrder()
+    {
+        yield return new WaitForSeconds(3F);
+        orderScript.BuildList();
+        box.boxEnabled = true;
     }
 }

@@ -22,13 +22,14 @@ public class ItemPicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        item1.text = amountOfItem[0] + " " + allItems[0].ToString();
-        item2.text = amountOfItem[1] + " " + allItems[1].ToString();
-        item3.text = amountOfItem[2] + " " + allItems[2].ToString();
+
     }
 
     public void BuildList()
     {
+        allItems = new ItemType[3];
+        amountOfItem = new int[3];
+
         int rand = Random.Range(1, 4);
         allItems[0] = PickItems(rand);
         int prevNum = rand;
@@ -48,6 +49,10 @@ public class ItemPicker : MonoBehaviour
             int temp = Random.Range(1, 4);
             amountOfItem[i] = temp;
         }
+
+        item1.text = amountOfItem[0] + " " + allItems[0].ToString();
+        item2.text = amountOfItem[1] + " " + allItems[1].ToString();
+        item3.text = amountOfItem[2] + " " + allItems[2].ToString();
     }
 
     public ItemType PickItems(int x)

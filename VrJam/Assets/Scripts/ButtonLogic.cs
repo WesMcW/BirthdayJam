@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ButtonLogic : MonoBehaviour
 {
-    public GameObject myButton;
+    //public GameObject myButton;
     public bool pushed = false;
 
     protected MeshRenderer myRender;
