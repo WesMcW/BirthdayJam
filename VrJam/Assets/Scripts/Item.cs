@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
 
 public enum ItemType
 {
-    thing1,
-    thing2,
-    thing3
+    bottle,
+    block,
+    ball
 }
