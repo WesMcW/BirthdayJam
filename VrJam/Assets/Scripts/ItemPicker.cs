@@ -10,7 +10,7 @@ public class ItemPicker : MonoBehaviour
     public ItemType[] allItems = new ItemType[3];
     public int[] amountOfItem = new int[3];
 
-    public TextMeshProUGUI
+    public TextMeshProUGUI item1, item2, item3;
 
 
     // Start is called before the first frame update
