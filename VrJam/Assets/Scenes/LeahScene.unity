@@ -1330,6 +1330,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4515048727945810, guid: ea7023a21c9958f439273c740ffccda8, type: 3}
   m_PrefabInstance: {fileID: 247306226}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &277780155 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 64686058146223506, guid: 0242aa8515b4bc947a945a5c6df83ee9, type: 3}
+  m_PrefabInstance: {fileID: 418288726}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &313277086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1573,6 +1578,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4805308755068676, guid: 97f4a8d19ea425a47ae392bde7e260cb, type: 3}
   m_PrefabInstance: {fileID: 349302818}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &362508009 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 136996417771637876, guid: 0242aa8515b4bc947a945a5c6df83ee9, type: 3}
+  m_PrefabInstance: {fileID: 418288726}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &382277308
 PrefabInstance:
@@ -3499,6 +3509,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4515048727945810, guid: ea7023a21c9958f439273c740ffccda8, type: 3}
   m_PrefabInstance: {fileID: 639487464}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &656393943 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 136729439212157496, guid: 0242aa8515b4bc947a945a5c6df83ee9, type: 3}
+  m_PrefabInstance: {fileID: 418288726}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &684946044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5329,7 +5344,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1620805885933330, guid: 0242aa8515b4bc947a945a5c6df83ee9, type: 3}
   m_PrefabInstance: {fileID: 418288726}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1508972313
+--- !u!114 &1508972316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5338,7 +5353,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1508972312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53a1439cd4d0114499df0467d8f9e100, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b388ff4c8d1f3644a143b16d45403ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabBegin: 0.55
@@ -5346,7 +5361,10 @@ MonoBehaviour:
   m_parentHeldObject: 0
   m_moveHandPosition: 0
   m_gripTransform: {fileID: 391360324}
-  m_grabVolumes: []
+  m_grabVolumes:
+  - {fileID: 277780155}
+  - {fileID: 656393943}
+  - {fileID: 362508009}
   m_controller: 1
   m_parentTransform: {fileID: 3680607432590136173}
   m_player: {fileID: 3680607433127796671}
@@ -5356,7 +5374,7 @@ MonoBehaviour:
   m_preventGrabThroughWalls: 1
   m_objectPullVelocity: 10
   m_maxGrabDistance: 0
-  m_grabObjectsInLayer: 0
+  m_grabObjectsInLayer: 8
   m_obstructionLayer: 0
 --- !u!1001 &1509222914
 PrefabInstance:
@@ -12221,10 +12239,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 783618431107230986, guid: 563975c906991964882e7b82d346caea, type: 3}
-      propertyPath: m_snapOrientation
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4058740684607811602, guid: 563975c906991964882e7b82d346caea, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -12251,7 +12265,7 @@ PrefabInstance:
       objectReference: {fileID: 2001894177}
     - target: {fileID: 4058740685335931493, guid: 563975c906991964882e7b82d346caea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.82
+      value: -3.827
       objectReference: {fileID: 0}
     - target: {fileID: 4058740685335931493, guid: 563975c906991964882e7b82d346caea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12296,10 +12310,6 @@ PrefabInstance:
     - target: {fileID: 4058740685335931518, guid: 563975c906991964882e7b82d346caea, type: 3}
       propertyPath: m_Name
       value: BOX
-      objectReference: {fileID: 0}
-    - target: {fileID: 4058740685335931518, guid: 563975c906991964882e7b82d346caea, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 563975c906991964882e7b82d346caea, type: 3}
