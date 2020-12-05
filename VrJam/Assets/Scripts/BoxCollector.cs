@@ -4,46 +4,34 @@ using UnityEngine;
 
 public class BoxCollector : MonoBehaviour
 {
-    Dictionary<ProductType, int> myItems;
+    List<ItemType> myItems;
 
     private void Start()
     {
-        ResetDict();
+        ResetItems();
     }
 
     public void OnTriggerEnter(Collider other)
     {
         Debug.Log("hit");
 
-        Product prod = other.GetComponent<Product>();
+        Item prod = other.GetComponent<Item>();
 
         if (prod)
         {
             StartCoroutine(prod.Return(0.5F));
             prod.gameObject.SetActive(false);
-            AddToDict(prod);
+            myItems.Add(prod.myType);
         }
     }
 
-    void AddToDict(Product item)
-    {
-        if (myItems.ContainsKey(item.myType))
-        {
-            myItems[item.myType]++;
-        }
-        else
-        {
-            myItems.Add(item.myType, 1);
-        }
-    }
-
-    public Dictionary<ProductType, int> GetDict()
+    public List<ItemType> GetItems()
     {
         return myItems;
     }
 
-    public void ResetDict()
+    public void ResetItems()
     {
-        myItems = new Dictionary<ProductType, int>();
+        myItems = new List<ItemType>();
     } 
 }

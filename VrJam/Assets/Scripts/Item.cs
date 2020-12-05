@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Product : MonoBehaviour
+public class Item : MonoBehaviour
 {
     public ProductPool myPool;
-    public ProductType myType;
+    public ItemType myType;
 
     public IEnumerator Return(float time)
     {
@@ -17,7 +17,7 @@ public class Product : MonoBehaviour
     }
 }
 
-public enum ProductType
+public enum ItemType
 {
     thing1,
     thing2,
