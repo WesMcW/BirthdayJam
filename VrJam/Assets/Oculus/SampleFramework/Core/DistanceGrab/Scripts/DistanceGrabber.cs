@@ -355,7 +355,7 @@ namespace OculusSampleFramework
         }
 
         // Just here to allow calling of a protected member function.
-      protected override void OffhandGrabbed(OVRGrabbable grabbable)
+      public override void OffhandGrabbed(OVRGrabbable grabbable)
         {
             base.OffhandGrabbed(grabbable);
         }
