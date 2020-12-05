@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BoxCollector : MonoBehaviour
 {
+    public bool boxEnabled;
+
     List<ItemType> myItems;
 
     private void Start()
@@ -13,15 +15,16 @@ public class BoxCollector : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit");
-
-        Item prod = other.GetComponent<Item>();
-
-        if (prod)
+        if (boxEnabled)
         {
-            StartCoroutine(prod.Return(0.5F));
-            prod.gameObject.SetActive(false);
-            myItems.Add(prod.myType);
+            Item prod = other.GetComponent<Item>();
+
+            if (prod)
+            {
+                StartCoroutine(prod.Return(0.5F));
+                prod.gameObject.SetActive(false);
+                myItems.Add(prod.myType);
+            }
         }
     }
 
@@ -33,5 +36,6 @@ public class BoxCollector : MonoBehaviour
     public void ResetItems()
     {
         myItems = new List<ItemType>();
+        boxEnabled = true;
     } 
 }
