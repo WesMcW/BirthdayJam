@@ -3611,6 +3611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b143182d6265e4b8104d4683471e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxEnabled: 0
 --- !u!54 &671546331
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4237,7 +4238,7 @@ GameObject:
   - component: {fileID: 975571283}
   - component: {fileID: 975571282}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: bjectbject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4255,6 +4256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65997a6946a9c9044a81441f247f98ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allItems: 000000000000000000000000
+  amountOfItem: 000000000000000000000000
 --- !u!4 &975571283
 Transform:
   m_ObjectHideFlags: 0

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ItemPicker : MonoBehaviour
 {
-    int[] amountOfItem;
     ItemType item;
     public ItemType[] allItems = new ItemType[3];
+    public int[] amountOfItem = new int[3];
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,13 @@ public class ItemPicker : MonoBehaviour
             }
             allItems[i] = PickItems(rand);
             prevNum = rand;
-        }    
+        }
+
+        for(int i = 0; i < 3; i++)
+        {
+            int temp = Random.Range(1, 4);
+            amountOfItem[i] = temp;
+        }
     }
 
     public ItemType PickItems(int x)
