@@ -22,7 +22,9 @@ public class ItemPicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        item1.text = allItems[1].ToString();
+        item1.text = amountOfItem[0] + " " + allItems[0].ToString();
+        item2.text = amountOfItem[1] + " " + allItems[1].ToString();
+        item3.text = amountOfItem[2] + " " + allItems[2].ToString();
     }
 
     public void BuildList()
