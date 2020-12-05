@@ -10,7 +10,7 @@ public class ItemPicker : MonoBehaviour
     public ItemType[] allItems = new ItemType[3];
     public int[] amountOfItem = new int[3];
 
-    public TextMeshProUGUI item1, item2, item3;
+    public TextMeshPro item1, item2, item3;
 
 
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class ItemPicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        item1.text = allItems[1].ToString();
     }
 
     public void BuildList()
