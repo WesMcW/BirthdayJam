@@ -1188,14 +1188,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2067572442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2da0eba0ffc6c3479756131086fd61a, type: 3}
+  m_Script: {fileID: 11500000, guid: d7b2855a8acb5894fbdd2e40384e221c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myButton: {fileID: 0}
   pushed: 0
-  pushedMat: {fileID: 0}
-  newMat: {fileID: 0}
-  oldMat: {fileID: 0}
+  pushedMat: {fileID: 2100000, guid: 584662273d60a0f47bd7fecbb570e66e, type: 2}
 --- !u!64 &2067572445
 MeshCollider:
   m_ObjectHideFlags: 0
