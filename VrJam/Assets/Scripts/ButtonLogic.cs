@@ -15,6 +15,8 @@ public class ButtonLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject);
+
         //if(!pushed && other.gameObject == myButton)
         if(!pushed && other.CompareTag("Hand"))
         {
@@ -55,17 +57,17 @@ public class ButtonLogic : MonoBehaviour
 
     private void Start()
     {
-        yPos = myButton.transform.localPosition.y;
+        //yPos = myButton.transform.localPosition.y;
         myRender = GetComponent<MeshRenderer>();
         defaultMat = myRender.material;
     }
 
-    private void Update()
+    /*private void Update()
     {
         if(myButton.transform.localPosition.y < 0)
         {
             //reset
             myButton.transform.localPosition = new Vector3(0, yPos, 0);
         }
-    }
+    }*/
 }
