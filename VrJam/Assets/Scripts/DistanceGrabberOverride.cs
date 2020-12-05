@@ -79,7 +79,8 @@ public class DistanceGrabberOverride : DistanceGrabber
             }
             else if (m_grabbedObj.GetComponent<BoxFlap>())
             {
-
+                Quaternion relOri = Quaternion.Inverse(transform.rotation) * m_grabbedObj.transform.rotation;
+                m_grabbedObjectRotOff = new Quaternion(relOri.x, 0, 0, relOri.w);
             }
             else
             {
