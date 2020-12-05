@@ -55,13 +55,13 @@ public class ItemPicker : MonoBehaviour
         switch (x)
         {
             case 1:
-                item = ItemType.bottle;
+                item = ItemType.Bottle;
                 return item;
             case 2:
-                item = ItemType.block;
+                item = ItemType.Block;
                 return item;
             default:
-                item = ItemType.ball;
+                item = ItemType.Ball;
                 return item;
         }
     }
