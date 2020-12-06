@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Time Variables")]
-    public int currentLevel;
-    public float timePassed;
     public int clockTime = 9;
     public TMPro.TextMeshPro timerTxt;
 
@@ -16,22 +14,27 @@ public class GameManager : MonoBehaviour
     public BoxCollector box;
     public ItemPicker orderScript;
     public TMPro.TextMeshPro tempText;
+    public OVRScreenFade screenFader;
 
     [Header("Game Variables")]
     public bool inGame;
     public int strikes = 0;
-    public int roundStrikes = 0;
+    public int boxQuota;
+    public int boxCount;
 
     void Awake()
     {
         if (instance) Destroy(gameObject);
         else instance = this;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
     {
         inGame = true;
 
+        boxQuota = 3;
         clockTime = 9;
         timerTxt.text = clockTime + ":00";
         StartCoroutine(UpdateTime());
@@ -46,6 +49,22 @@ public class GameManager : MonoBehaviour
         timerTxt.text = clockTime + ":00";
 
         if (clockTime != 5) StartCoroutine(UpdateTime());
+        else
+        {
+            box.boxEnabled = false;
+            foreach (ButtonLogic b in FindObjectsOfType<ButtonLogic>()) b.buttonEnabled = false;
+
+            screenFader.FadeOut();
+            if (boxCount >= boxQuota)
+            {
+                //reset and load next 'day'
+                StartCoroutine(StartNewDay(2.5F));
+            }
+            else
+            {
+                //go to losing screen
+            }
+        }
     }
 
     public void FinishOrder()
@@ -54,7 +73,7 @@ public class GameManager : MonoBehaviour
         box.transform.parent.GetComponent<Animator>().SetTrigger("move");
         
         StartCoroutine(GetOrderResults());
-        StartCoroutine(StartNewOrder());
+        StartCoroutine(StartNewOrder(3F));
     }
 
     void ResultsOfOrder()
@@ -96,9 +115,47 @@ public class GameManager : MonoBehaviour
 
         if (!success)
         {
-            roundStrikes++;
-            tempText.text = "Errors: " + roundStrikes;
+            strikes++;
+            tempText.text = "Errors: " + strikes;
+            if (strikes >= 3)
+            {
+                screenFader.FadeOut();
+                //go to losing screen
+            }
         }
+        else boxCount++;
+    }
+
+    void ResetDay()
+    {
+        //maybe put some stats on a canvas for a little bit
+
+        StartCoroutine(StartNewDay(3F));
+    }
+
+    IEnumerator StartNewDay(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        strikes = 0;
+        boxCount = 0;
+        boxQuota += 2;
+
+        clockTime = 9;
+        timerTxt.text = clockTime + ":00";
+
+        StartCoroutine(ReturnToGame(2.5F));
+    }
+
+    IEnumerator ReturnToGame(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        screenFader.FadeIn();
+        box.boxEnabled = true;
+        foreach (ButtonLogic b in FindObjectsOfType<ButtonLogic>()) b.buttonEnabled = true;
+        StartCoroutine(UpdateTime());
+        StartNewOrder(0);
     }
 
     IEnumerator GetOrderResults()
@@ -107,9 +164,9 @@ public class GameManager : MonoBehaviour
         ResultsOfOrder();
     }
 
-    IEnumerator StartNewOrder()
+    IEnumerator StartNewOrder(float time)
     {
-        yield return new WaitForSeconds(3F);
+        yield return new WaitForSeconds(time);
         orderScript.BuildList();
         box.boxEnabled = true;
     }

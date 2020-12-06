@@ -4,38 +4,26 @@ using UnityEngine;
 
 public class ButtonLogic : MonoBehaviour
 {
-    //public GameObject myButton;
     public bool pushed = false;
+    public bool buttonEnabled = true;
 
     protected MeshRenderer myRender;
     Material defaultMat;
     public Material pushedMat;
 
-    float yPos = -1;
-
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject);
-
-        //if(!pushed && other.gameObject == myButton)
-        if(!pushed && other.CompareTag("Hand"))
+        if (buttonEnabled)
         {
-            pushed = true;
-            myRender.material = pushedMat;
-            ButtonPressed();
-            StartCoroutine(DelayReset());
+            if (!pushed && other.CompareTag("Hand"))
+            {
+                pushed = true;
+                myRender.material = pushedMat;
+                ButtonPressed();
+                StartCoroutine(DelayReset());
+            }
         }
     }
-
-    /*private void OnTriggerExit(Collider other)
-    {
-        //if (pushed && other.gameObject == myButton)
-        if (pushed && other.CompareTag("Hand"))
-        {
-            pushed = false;
-            ButtonReleased();
-        }
-    }*/
 
     protected virtual void ButtonPressed()
     {
@@ -55,19 +43,9 @@ public class ButtonLogic : MonoBehaviour
         Debug.Log("button released!");
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        //yPos = myButton.transform.localPosition.y;
         myRender = GetComponent<MeshRenderer>();
         defaultMat = myRender.material;
     }
-
-    /*private void Update()
-    {
-        if(myButton.transform.localPosition.y < 0)
-        {
-            //reset
-            myButton.transform.localPosition = new Vector3(0, yPos, 0);
-        }
-    }*/
 }
