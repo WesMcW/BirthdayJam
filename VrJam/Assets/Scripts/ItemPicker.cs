@@ -11,7 +11,9 @@ public class ItemPicker : MonoBehaviour
     public int[] amountOfItem = new int[3];
 
     public TextMeshPro item1, item2, item3;
+    public TextMeshPro orderTxt;
 
+    string charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,14 @@ public class ItemPicker : MonoBehaviour
         item1.text = amountOfItem[0] + " " + allItems[0].ToString();
         item2.text = amountOfItem[1] + " " + allItems[1].ToString();
         item3.text = amountOfItem[2] + " " + allItems[2].ToString();
+
+        string orderString = "";
+        for(int i = 0; i < 16; i++)
+        {
+            char randChar = charList[Random.Range(0, charList.Length)];
+            orderString += randChar;
+        }
+        orderTxt.text = "Order: #" + orderString;
     }
 
     public ItemType PickItems(int x)
