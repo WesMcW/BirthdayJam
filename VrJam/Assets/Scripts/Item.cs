@@ -23,5 +23,6 @@ public enum ItemType
     Block,
     Ball,
     Bell,
-    Snowman
+    Snowman,
+    Receipt
 }
