@@ -46,8 +46,9 @@ public class GameManager : MonoBehaviour
     public void FinishOrder()
     {
         box.boxEnabled = false;
-        //start box animation
-        ResultsOfOrder();
+        box.GetComponent<Animator>().SetTrigger("move");
+        
+        StartCoroutine(GetOrderResults());
         StartCoroutine(StartNewOrder());
     }
 
@@ -93,6 +94,12 @@ public class GameManager : MonoBehaviour
             roundStrikes++;
             tempText.text = "Errors: " + roundStrikes;
         }
+    }
+
+    IEnumerator GetOrderResults()
+    {
+        yield return new WaitForSeconds(1.5F);
+        ResultsOfOrder();
     }
 
     IEnumerator StartNewOrder()
