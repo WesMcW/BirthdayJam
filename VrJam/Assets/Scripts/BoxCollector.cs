@@ -30,9 +30,20 @@ public class BoxCollector : MonoBehaviour
         }
     }
 
-    public List<ItemType> GetItems()
+    public List<ItemStuff> GetItems()
     {
-        return myItems;
+        List<ItemStuff> structList = new List<ItemStuff>();
+
+        for(int i = 0; i < myItems.Count; i++)
+        {
+            ItemStuff newStruct = new ItemStuff();
+            newStruct.type = myItems[i];
+            newStruct.wrapped = itemGifted[i];
+            structList.Add(newStruct);
+        }
+
+        Debug.Log(structList.Count);
+        return structList;
     }
 
     public void ResetItems()
@@ -41,4 +52,10 @@ public class BoxCollector : MonoBehaviour
         itemGifted = new List<bool>();
         boxEnabled = true;
     } 
+}
+
+public struct ItemStuff
+{
+    public ItemType type;
+    public bool wrapped;
 }

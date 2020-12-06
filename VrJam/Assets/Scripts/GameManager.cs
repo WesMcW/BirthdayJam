@@ -27,6 +27,11 @@ public class GameManager : MonoBehaviour
     public int boxQuota;
     public int boxCount;
 
+    [Header("Texts")]
+    public TextMeshProUGUI line1;
+    public TextMeshProUGUI line2;
+    public TextMeshProUGUI fired;
+
     void Awake()
     {
         if (instance) Destroy(gameObject);
@@ -47,6 +52,10 @@ public class GameManager : MonoBehaviour
         clockTime = 9;
         timerTxt.text = clockTime + ":00";
         StartCoroutine(UpdateTime());
+
+        line1.gameObject.SetActive(false);
+        line2.gameObject.SetActive(false);
+        fired.gameObject.SetActive(false);
     }
 
     IEnumerator UpdateTime()
@@ -67,10 +76,12 @@ public class GameManager : MonoBehaviour
             if (boxCount >= boxQuota)
             {
                 //reset and load next 'day'
+                StartCoroutine(SetCanvas(dayCounter, boxCount));
                 StartCoroutine(StartNewDay(2.5F));
             }
             else
             {
+                StartCoroutine(ShowFired());
                 //go to losing screen
             }
         }
@@ -88,11 +99,15 @@ public class GameManager : MonoBehaviour
     void ResultsOfOrder()
     {
         Dictionary<ItemType, int> itemCounts = new Dictionary<ItemType, int>();
-        foreach(ItemType i in box.GetItems())
+        List<ItemStuff> itemStuffs = new List<ItemStuff>();
+        foreach (ItemStuff i in box.GetItems())
         {
-            if (itemCounts.ContainsKey(i)) itemCounts[i]++;
-            else itemCounts.Add(i, 1);
+            if (itemCounts.ContainsKey(i.type)) itemCounts[i.type]++;
+            else itemCounts.Add(i.type, 1);
+            itemStuffs.Add(i);
         }
+
+        Debug.Log(itemCounts.Count);
 
         // compare dict to order and see if strike is given
         bool success = true;
@@ -106,25 +121,58 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("wrong item amount");
                     success = false;
                     break;
                 }
             }
             else
             {
+                Debug.Log("wrong item: " + orderScript.allItems[i]);
                 success = false;
                 break;
             }
         }
 
-        foreach(var i in itemCounts)
+        foreach (var i in itemCounts)
         {
-            
-            if (i.Value != 0 && i.Key != ItemType.Receipt) success = false;
-            else if(i.Key == ItemType.Receipt)
+
+            if (i.Value != 0 && i.Key != ItemType.Receipt)
             {
-                if (dayCounter == 1) success = false;
-                else if (i.Value != 1) success = false;
+                Debug.Log("wrong item amount");
+                success = false;
+                break;
+            }
+            else if (i.Key == ItemType.Receipt && dayCounter != 1 && i.Value != 1)
+            {
+                Debug.Log("receipt error");
+                success = false;
+                break;
+            }
+        }
+
+        if(dayCounter > 2)
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                if (orderScript.wrapped[i])
+                {
+                    bool found = false;
+                    foreach(ItemStuff item in itemStuffs)
+                    {
+                        if(item.type == orderScript.allItems[i] && item.wrapped)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        Debug.Log("wrapped incorrect");
+                        success = false;
+                    }
+                }
             }
         }
 
@@ -135,19 +183,13 @@ public class GameManager : MonoBehaviour
             if (strikes >= 3)
             {
                 screenFader.FadeOut();
+                StartCoroutine(ShowFired());
                 //go to losing screen
             }
         }
         else boxCount++;
 
         box.ResetItems();
-    }
-
-    void ResetDay()
-    {
-        //maybe put some stats on a canvas for a little bit
-
-        StartCoroutine(StartNewDay(3F));
     }
 
     IEnumerator StartNewDay(float time)
@@ -159,8 +201,8 @@ public class GameManager : MonoBehaviour
         boxQuota += 2;
         
         dayCounter++;
-        if (dayCounter == 2) specialTxt1.text = "Add a receipt to every order.";
-        else if (dayCounter == 3) specialTxt2.text = "#* = the gift needs to be wrapped.";
+        if (dayCounter == 2) specialTxt1.text = "Add a receipt to every order";
+        else if (dayCounter == 3) specialTxt2.text = "#* = wrap gift";
 
         clockTime = 9;
         timerTxt.text = clockTime + ":00";
@@ -172,6 +214,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
+        DisableCanvas();
         screenFader.FadeIn();
         box.boxEnabled = true;
         foreach (ButtonLogic b in FindObjectsOfType<ButtonLogic>()) b.buttonEnabled = true;
@@ -190,5 +233,29 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(time);
         orderScript.BuildList();
         box.boxEnabled = true;
+    }
+
+    IEnumerator ShowFired()
+    {
+        yield return new WaitForSeconds(1);
+
+        fired.gameObject.SetActive(true);
+    }
+
+    IEnumerator SetCanvas(int day, int count)
+    {
+        yield return new WaitForSeconds(1);
+
+        line1.gameObject.SetActive(true);
+        line2.gameObject.SetActive(true);
+
+        line1.text = "End of Day " + day;
+        line2.text = "Orders Completed: " + count;
+    }
+
+    void DisableCanvas()
+    {
+        line1.gameObject.SetActive(false);
+        line2.gameObject.SetActive(false);
     }
 }
