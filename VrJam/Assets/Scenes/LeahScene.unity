@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1037074513}
-  m_IndirectSpecularColor: {r: 0.14411509, g: 0.16900262, b: 0.23013034, a: 1}
+  m_IndirectSpecularColor: {r: 0.14411503, g: 0.16900253, b: 0.23013023, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7327,7 +7327,7 @@ MonoBehaviour:
   box: {fileID: 671546330}
   orderScript: {fileID: 975571282}
   tempText: {fileID: 1024148349}
-  screenFader: {fileID: 0}
+  screenFader: {fileID: 3680607432603037612}
   inGame: 0
   strikes: 0
   boxQuota: 0

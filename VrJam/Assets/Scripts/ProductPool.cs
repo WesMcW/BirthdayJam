@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ProductPool : MonoBehaviour
 {
-    GameObject myObject;
+    protected GameObject myObject;
 
-    public void Return(GameObject obj)
+    public virtual void Return(GameObject obj)
     {
         if (!myObject) myObject = obj;
         myObject.SetActive(true);

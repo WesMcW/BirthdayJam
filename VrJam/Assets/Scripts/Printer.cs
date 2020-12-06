@@ -6,9 +6,9 @@ public class Printer : MonoBehaviour
 {
     private void OnDisable()
     {
-        gameObject.layer = 0;
-        GetComponent<Animator>().enabled = true;
-        GetComponent<Animator>().SetTrigger("Reset");
+        //gameObject.layer = 0;
+        //GetComponent<Animator>().enabled = true;
+        //GetComponent<Animator>().SetTrigger("Reset");
     }
 
     public void TurnOn()
