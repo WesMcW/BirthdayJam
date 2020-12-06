@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     [Header("Time Variables")]
     public int currentLevel;
     public float timePassed;
-    public float dayTime = 300;
+    public int clockTime = 9;
+    public TMPro.TextMeshPro timerTxt;
 
     [Header("GameObjects")]
     public BoxCollector box;
@@ -27,20 +28,21 @@ public class GameManager : MonoBehaviour
         else instance = this;
     }
 
-    void Update()
+    void Start()
     {
-        if (inGame)
-        {
-            timePassed += Time.deltaTime;
+        inGame = true;
+        StartCoroutine(UpdateTime());
+    }
 
-            //update game clock
+    IEnumerator UpdateTime()
+    {
+        yield return new WaitForSeconds(60);
 
-            if(timePassed >= dayTime)
-            {
-                inGame = false;
-                //calculate results
-            }
-        }
+        clockTime++;
+        if (clockTime > 12) clockTime = 1;
+        timerTxt.text = clockTime + ":00";
+
+        if (clockTime != 5) StartCoroutine(UpdateTime());
     }
 
     public void FinishOrder()
