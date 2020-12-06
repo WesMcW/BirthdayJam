@@ -32,7 +32,7 @@ public class ItemPicker : MonoBehaviour
         allItems = new ItemType[3];
         amountOfItem = new int[3];
 
-        int rand = Random.Range(1, 4);
+        int rand = Random.Range(1, 6);
         allItems[0] = PickItems(rand);
         int prevNum = rand;
 
@@ -40,15 +40,18 @@ public class ItemPicker : MonoBehaviour
         {
             while(prevNum == rand)
             {
-                rand = Random.Range(1, 4);
+                rand = Random.Range(1, 6);
             }
 
             allItems[i] = PickItems(rand);
 
-            while(allItems[i] == allItems[0] || allItems[i] == allItems[1])
+            if (i == 2)
             {
-                rand = Random.Range(1, 4);
-                allItems[i] = PickItems(rand);
+                while (allItems[i] == allItems[0] || allItems[i] == allItems[1])
+                {
+                    rand = Random.Range(1, 6);
+                    allItems[i] = PickItems(rand);
+                }
             }
             prevNum = rand;
         }
