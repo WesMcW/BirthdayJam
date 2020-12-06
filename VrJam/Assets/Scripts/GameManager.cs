@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     public void FinishOrder()
     {
         box.boxEnabled = false;
-        box.GetComponent<Animator>().SetTrigger("move");
+        box.transform.parent.GetComponent<Animator>().SetTrigger("move");
         
         StartCoroutine(GetOrderResults());
         StartCoroutine(StartNewOrder());
