@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         inGame = true;
+
+        clockTime = 9;
+        timerTxt.text = clockTime + ":00";
         StartCoroutine(UpdateTime());
     }
 
