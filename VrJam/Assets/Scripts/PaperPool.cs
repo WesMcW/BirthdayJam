@@ -27,5 +27,7 @@ public class PaperPool : ProductPool
         myObject.GetComponent<Animator>().SetTrigger("Reset");
         myObject.GetComponent<Collider>().enabled = true;
         myObject.GetComponent<Rigidbody>().useGravity = true;
+
+        myObject.GetComponent<Printer>().myButton.buttonEnabled = true;
     }
 }

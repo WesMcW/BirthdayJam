@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Printer : MonoBehaviour
 {
+    public ButtonLogic myButton;
+
     private void OnDisable()
     {
         //gameObject.layer = 0;

@@ -7,6 +7,8 @@ public class PrintButton : ButtonLogic
     public GameObject receipt;
     Animator anim;
 
+    public bool ready = true;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -24,5 +26,6 @@ public class PrintButton : ButtonLogic
     {
         base.ButtonPressed();
         anim.SetTrigger("Print");
+        buttonEnabled = false;
     }
 }
