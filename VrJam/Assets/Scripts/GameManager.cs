@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public ItemPicker orderScript;
     public TextMeshPro tempText;
     public OVRScreenFade screenFader;
+
     public TextMeshPro specialTxt1;
     public TextMeshPro specialTxt2;
 
@@ -36,6 +37,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        specialTxt1.text = "";
+        specialTxt2.text = "";
+
         inGame = true;
 
         dayCounter = 1;
@@ -135,6 +139,8 @@ public class GameManager : MonoBehaviour
             }
         }
         else boxCount++;
+
+        box.ResetItems();
     }
 
     void ResetDay()
@@ -151,7 +157,10 @@ public class GameManager : MonoBehaviour
         strikes = 0;
         boxCount = 0;
         boxQuota += 2;
+        
         dayCounter++;
+        if (dayCounter == 2) specialTxt1.text = "Add a receipt to every order.";
+        else if (dayCounter == 3) specialTxt2.text = "#* = the gift needs to be wrapped.";
 
         clockTime = 9;
         timerTxt.text = clockTime + ":00";

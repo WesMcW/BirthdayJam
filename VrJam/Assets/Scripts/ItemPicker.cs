@@ -63,20 +63,26 @@ public class ItemPicker : MonoBehaviour
             amountOfItem[i] = temp;
         }
 
-        if(GameManager.instance.dayCounter > 2)
-        {
-            wrapped = new bool[3];
+        wrapped = new bool[3] { false, false, false };
+        string[] icon = new string[3] { "", "", "" };
 
+        if (GameManager.instance.dayCounter > 2)
+        {
             for(int i = 0; i < 3; i++)
             {
-                int wrap = Random.Range(0, 10);
-                wrapped[i] = wrap > 7;
+                if (amountOfItem[i] == 1)
+                {
+                    int wrap = Random.Range(0, 10);
+                    wrapped[i] = wrap > 2;
+                }
+
+                if (wrapped[i]) icon[i] = "*";
             }
         }
 
-        item1.text = amountOfItem[0] + " " + allItems[0].ToString();
-        item2.text = amountOfItem[1] + " " + allItems[1].ToString();
-        item3.text = amountOfItem[2] + " " + allItems[2].ToString();
+        item1.text = amountOfItem[0] + icon[0] + " " + allItems[0].ToString();
+        item2.text = amountOfItem[1] + icon[1] + " " + allItems[1].ToString();
+        item3.text = amountOfItem[2] + icon[2] + " " + allItems[2].ToString();
 
         string orderString = "";
         for(int i = 0; i < 16; i++)
@@ -98,7 +104,7 @@ public class ItemPicker : MonoBehaviour
                 item = ItemType.Block;
                 return item;
             case 3:
-                item = ItemType.Ball;
+                item = ItemType.SoccerBall;
                 return item;
             case 4:
                 item = ItemType.Bell;

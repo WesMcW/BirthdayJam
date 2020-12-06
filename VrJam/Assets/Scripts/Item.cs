@@ -23,7 +23,7 @@ public enum ItemType
 {
     Bottle,
     Block,
-    Ball,
+    SoccerBall,
     Bell,
     Snowman,
     Receipt
