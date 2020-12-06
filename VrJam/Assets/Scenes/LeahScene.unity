@@ -1581,6 +1581,7 @@ MonoBehaviour:
   buttonEnabled: 1
   pushedMat: {fileID: 2100000, guid: 584662273d60a0f47bd7fecbb570e66e, type: 2}
   receipt: {fileID: 761863391}
+  ready: 1
 --- !u!64 &277780155 stripped
 MeshCollider:
   m_CorrespondingSourceObject: {fileID: 64686058146223506, guid: 0242aa8515b4bc947a945a5c6df83ee9, type: 3}
@@ -5203,6 +5204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd58dfcf1c2b794faf43e100c0e6044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myButton: {fileID: 274572293}
 --- !u!114 &761863393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16073,7 +16075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4058740685335931493, guid: 563975c906991964882e7b82d346caea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.827
+      value: -3.821
       objectReference: {fileID: 0}
     - target: {fileID: 4058740685335931493, guid: 563975c906991964882e7b82d346caea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16114,6 +16116,18 @@ PrefabInstance:
     - target: {fileID: 4058740685335931493, guid: 563975c906991964882e7b82d346caea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058740685335931493, guid: 563975c906991964882e7b82d346caea, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.71757
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058740685335931493, guid: 563975c906991964882e7b82d346caea, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.71757
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058740685335931493, guid: 563975c906991964882e7b82d346caea, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.71757
       objectReference: {fileID: 0}
     - target: {fileID: 4058740685335931518, guid: 563975c906991964882e7b82d346caea, type: 3}
       propertyPath: m_Name
