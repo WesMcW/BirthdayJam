@@ -12,6 +12,7 @@ public class PaperPool : ProductPool
         myObject.GetComponent<Collider>().enabled = false;
 
         myObject.transform.position = transform.position;
+        myObject.transform.rotation = Quaternion.identity;
 
         StartCoroutine(Fix());
     }
