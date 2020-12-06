@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2133878705327102597}
   - component: {fileID: 2133878705327102596}
   - component: {fileID: 2133878705327102603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
