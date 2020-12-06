@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProductPool : MonoBehaviour
+public class GiftPool : ProductPool
 {
-    protected GameObject myObject;
+    public GiftSpawner gs;
 
-    public virtual void Return(GameObject obj)
+    public override void Return(GameObject obj)
     {
-        if (!myObject) myObject = obj;
-        myObject.SetActive(true);
+        obj.SetActive(false);
+
         myObject.transform.position = transform.position;
         myObject.transform.rotation = Quaternion.identity;
+
+        gs.used = false;
     }
 }

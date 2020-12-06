@@ -7,6 +7,8 @@ public class Item : MonoBehaviour
     public ProductPool myPool;
     public ItemType myType;
 
+    public bool isGift;
+
     public IEnumerator Return(float time)
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;

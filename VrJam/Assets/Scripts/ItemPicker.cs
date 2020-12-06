@@ -9,6 +9,7 @@ public class ItemPicker : MonoBehaviour
     ItemType item;
     public ItemType[] allItems = new ItemType[3];
     public int[] amountOfItem = new int[3];
+    public bool[] wrapped = new bool[3];
 
     public TextMeshPro item1, item2, item3;
     public TextMeshPro orderTxt;
@@ -60,6 +61,17 @@ public class ItemPicker : MonoBehaviour
         {
             int temp = Random.Range(1, 4);
             amountOfItem[i] = temp;
+        }
+
+        if(GameManager.instance.dayCounter > 2)
+        {
+            wrapped = new bool[3];
+
+            for(int i = 0; i < 3; i++)
+            {
+                int wrap = Random.Range(0, 10);
+                wrapped[i] = wrap > 7;
+            }
         }
 
         item1.text = amountOfItem[0] + " " + allItems[0].ToString();

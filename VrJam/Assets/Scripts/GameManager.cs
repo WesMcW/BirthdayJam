@@ -1,20 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     [Header("Time Variables")]
+    public int dayCounter = 1;
     public int clockTime = 9;
-    public TMPro.TextMeshPro timerTxt;
+    public TextMeshPro timerTxt;
 
     [Header("GameObjects")]
     public BoxCollector box;
     public ItemPicker orderScript;
-    public TMPro.TextMeshPro tempText;
+    public TextMeshPro tempText;
     public OVRScreenFade screenFader;
+    public TextMeshPro specialTxt1;
+    public TextMeshPro specialTxt2;
 
     [Header("Game Variables")]
     public bool inGame;
@@ -34,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         inGame = true;
 
+        dayCounter = 1;
         boxQuota = 3;
         clockTime = 9;
         timerTxt.text = clockTime + ":00";
@@ -110,7 +115,13 @@ public class GameManager : MonoBehaviour
 
         foreach(var i in itemCounts)
         {
-            if (i.Value != 0) success = false;
+            
+            if (i.Value != 0 && i.Key != ItemType.Receipt) success = false;
+            else if(i.Key == ItemType.Receipt)
+            {
+                if (dayCounter == 1) success = false;
+                else if (i.Value != 1) success = false;
+            }
         }
 
         if (!success)
@@ -140,6 +151,7 @@ public class GameManager : MonoBehaviour
         strikes = 0;
         boxCount = 0;
         boxQuota += 2;
+        dayCounter++;
 
         clockTime = 9;
         timerTxt.text = clockTime + ":00";

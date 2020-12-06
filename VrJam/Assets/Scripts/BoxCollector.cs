@@ -7,6 +7,7 @@ public class BoxCollector : MonoBehaviour
     public bool boxEnabled;
 
     List<ItemType> myItems;
+    List<bool> itemGifted;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class BoxCollector : MonoBehaviour
                 StartCoroutine(prod.Return(0.5F));
                 prod.gameObject.SetActive(false);
                 myItems.Add(prod.myType);
+                itemGifted.Add(prod.isGift);
             }
         }
     }
@@ -36,6 +38,7 @@ public class BoxCollector : MonoBehaviour
     public void ResetItems()
     {
         myItems = new List<ItemType>();
+        itemGifted = new List<bool>();
         boxEnabled = true;
     } 
 }
