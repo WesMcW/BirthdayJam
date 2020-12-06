@@ -21,5 +21,7 @@ public enum ItemType
 {
     Bottle,
     Block,
-    Ball
+    Ball,
+    Bell,
+    Snowman
 }

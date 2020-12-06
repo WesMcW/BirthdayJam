@@ -75,8 +75,14 @@ public class ItemPicker : MonoBehaviour
             case 2:
                 item = ItemType.Block;
                 return item;
-            default:
+            case 3:
                 item = ItemType.Ball;
+                return item;
+            case 4:
+                item = ItemType.Bell;
+                return item;
+            default:
+                item = ItemType.Snowman;
                 return item;
         }
     }
