@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
         if (!success)
         {
             strikes++;
-            tempText.text = "Errors: " + strikes;
+            if (tempText) tempText.text = "Errors: " + strikes;
             if (strikes >= 3)
             {
                 screenFader.FadeOut();
