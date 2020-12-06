@@ -42,7 +42,14 @@ public class ItemPicker : MonoBehaviour
             {
                 rand = Random.Range(1, 4);
             }
+
             allItems[i] = PickItems(rand);
+
+            while(allItems[i] == allItems[0] || allItems[i] == allItems[1])
+            {
+                rand = Random.Range(1, 4);
+                allItems[i] = PickItems(rand);
+            }
             prevNum = rand;
         }
 
