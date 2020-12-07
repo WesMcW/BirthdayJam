@@ -10,8 +10,9 @@ public class GiftPool : ProductPool
     {
         obj.SetActive(false);
 
-        myObject.transform.position = transform.position;
-        myObject.transform.rotation = Quaternion.identity;
+        obj.transform.position = transform.position;
+        obj.transform.rotation = Quaternion.identity;
+        obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         gs.used = false;
     }

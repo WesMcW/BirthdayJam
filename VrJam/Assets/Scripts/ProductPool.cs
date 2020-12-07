@@ -12,5 +12,6 @@ public class ProductPool : MonoBehaviour
         myObject.SetActive(true);
         myObject.transform.position = transform.position;
         myObject.transform.rotation = Quaternion.identity;
+        myObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }
