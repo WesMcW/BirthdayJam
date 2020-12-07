@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator UpdateTime()
     {
-        yield return new WaitForSeconds(40);
+        yield return new WaitForSeconds(20);
 
         clockTime++;
         if (clockTime > 12) clockTime = 1;
